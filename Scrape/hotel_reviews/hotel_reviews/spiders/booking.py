@@ -15,7 +15,7 @@ class BookingSpider(scrapy.Spider):
         print('\x1b[0;33;41m' + 'File found & removed ' + dump_path + '!' + '\x1b[0m')
 
     def parse(self, response):
-        for i in range(1):
+        for i in range(40):
             url = 'https://www.booking.com/searchresults.html?ss=Sri%20Lanka&rows=25&offset='+str(i*25)
             print('\x1b[1;36;40m' + url + '\x1b[0m')
             yield scrapy.Request(url=url,callback=self.parse_page)
