@@ -183,14 +183,14 @@ function drawChart() {
 						//SolrDocumentList docList = (SolrDocumentList) request.getAttribute("docList");
 						for (int i = 0; i < docList.size(); i++) {
 							SolrDocument doc = docList.get(i);
-							if(String.valueOf(doc.getFieldValue("Hotel_Name")).contains(hotel)) {%>
+							if(String.valueOf(doc.getFieldValue("hotel_name")).contains(hotel)) {%>
 							<!-- Blog Post -->
 							<div class="blog_post trans_200">
 								<div class="blog_post_body">
 									<div class="blog_post_text">
 										<div style="width:100%; max-height:145px; overflow: hidden;">
-											<%if(doc.getFieldValue("Review")!=null){ %>
-												<p><%=doc.getFieldValue("Review")%></p>
+											<%if(doc.getFieldValue("review_content")!=null){ %>
+												<p><%=doc.getFieldValue("review_content")%></p>
 												<!-- <p><%=doc.getFieldValue("is_bad_review")%></p> -->
 											<%} %>
 										</div>

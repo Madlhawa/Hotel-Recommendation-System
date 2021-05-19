@@ -68,9 +68,9 @@ public class search extends HttpServlet {
 
 				SolrQuery query = new SolrQuery();
 				query.set("q", squery);
-				query.set("df", "Review");
+				query.set("df", "review_content");
 				query.setFacet(true);
-				query.addFacetField("Hotel_Name_str");
+				query.addFacetField("hotel_name_str");
 
 				//Edimax
 				query.set("defType", "edismax"); 
@@ -89,13 +89,13 @@ public class search extends HttpServlet {
 					res = qr.process(solr);
 					float qtime = (float) (res.getElapsedTime()/1000.0);
 					SolrDocumentList docList = res.getResults();
-					FacetField hotelField = (FacetField) res.getFacetField("Hotel_Name_str");
+					FacetField hotelField = (FacetField) res.getFacetField("hotel_name_str");
 
 					for (int i = 0; i < docList.size(); ++i) {
 						SolrDocument doc = docList.get(i);
-						if(String.valueOf(doc.getFieldValue("Hotel_Name")).contains(hotel)) {
-							System.out.println(doc.getFieldValue("Hotel_Name"));
-							System.out.println("\t"+doc.getFieldValue("Review"));
+						if(String.valueOf(doc.getFieldValue("hotel_name")).contains(hotel)) {
+							System.out.println(doc.getFieldValue("hotel_name"));
+							System.out.println("\t"+doc.getFieldValue("review_content"));
 							System.out.println("\t"+doc.getFieldValue("is_bad_review"));
 							if(String.valueOf(doc.getFieldValue("is_bad_review")).contains("1"))
 								is_bad++;
