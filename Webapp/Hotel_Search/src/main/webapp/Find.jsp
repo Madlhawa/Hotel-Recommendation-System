@@ -50,6 +50,7 @@ SolrDocumentList docList = (SolrDocumentList) request.getAttribute("docList");
 float qtime = (float) request.getAttribute("qtime");
 int is_bad = (int) request.getAttribute("is_bad");
 int is_good = (int) request.getAttribute("is_good");
+int is_normal = (int) request.getAttribute("is_normal");
 int rows = (int) request.getAttribute("rows");
 String hotel = (String) request.getAttribute("hotel");
 String is_positive = (String) request.getAttribute("is_positive");
@@ -67,7 +68,8 @@ function drawChart() {
   var data = google.visualization.arrayToDataTable([
   ['Type', 'Sentiment', { role: 'style' } ],
   ['Positive', <%=is_good%>, 'color: #96d800'],
-  ['Negative', <%=is_bad %>, 'color: #f03b00']
+  ['Negative', <%=is_bad %>, 'color: #f03b00'],
+  ['Neutral', <%=is_normal %>, 'color: #ffc30b']
 ]);
 
   // Optional; add a title and set the width and height of the chart
@@ -190,6 +192,7 @@ function drawChart() {
 											<p>Overall review summarization for <b><%=squery %></b></p>
 											<p style="margin-bottom: 0;">No of reviews : <b><%=rows %></b> <a href="searchReviews?hotel=<%=hotel%>&squery=<%=squery %>">View reviews</a></p>
 											<p style="margin-bottom: 0;">Good : <b style="color:green;"><%=is_good %></b></p>
+											<p style="margin-bottom: 0;">Neutral : <b style="color:#ffc30b;"><%=is_normal %></b></p>
 											<p style="margin-bottom: 0;">Bad : <b style="color:red;"><%=is_bad %></b></p>
 										</div>
 									</div>

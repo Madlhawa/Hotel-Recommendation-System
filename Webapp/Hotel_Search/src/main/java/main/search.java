@@ -81,7 +81,7 @@ public class search extends HttpServlet {
 				System.out.println("\nGetting results from solr");
 				QueryResponse res;
 
-				int is_bad = 0, is_good = 0, rows = 0;
+				int is_bad = 0, is_good = 0, is_normal = 0, rows = 0;
 				String is_positive = "images/negative-vote.png";
 				try {
 					QueryRequest qr = new QueryRequest(query);
@@ -99,11 +99,13 @@ public class search extends HttpServlet {
 							System.out.println("\t"+doc.getFieldValue("is_bad_review"));
 							if(String.valueOf(doc.getFieldValue("is_bad_review")).contains("1"))
 								is_bad++;
+							else if(String.valueOf(doc.getFieldValue("is_bad_review")).contains("2"))
+								is_normal++;
 							else 
 								is_good++;
 
 							rows++;
-							System.out.println("\tis_bad:"+is_bad+" is_good:"+is_good+" rows:"+rows);
+							System.out.println("\tis_bad:"+is_bad+" is_good:"+is_good+" is_normal:"+is_normal+" rows:"+rows);
 						}
 					}
 
@@ -111,6 +113,7 @@ public class search extends HttpServlet {
 					System.out.println("queryTime : "+qtime);
 					System.out.println("is_bad : "+is_bad);
 					System.out.println("is_good : "+is_good);
+					System.out.println("is_normal : "+is_normal);
 					System.out.println("rows : "+rows);
 					System.out.println("hotel: "+hotel);
 					System.out.println("hotelField : "+hotelField.getValues());
@@ -125,6 +128,7 @@ public class search extends HttpServlet {
 					request.setAttribute("qtime", qtime);
 					request.setAttribute("is_bad", is_bad);
 					request.setAttribute("is_good", is_good);
+					request.setAttribute("is_normal", is_normal);
 					request.setAttribute("rows", rows);
 					request.setAttribute("hotel", hotel);
 					request.setAttribute("is_positive", is_positive);
