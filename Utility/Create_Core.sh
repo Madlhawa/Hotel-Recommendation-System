@@ -12,3 +12,7 @@ git clone https://github.com/Madlhawa/Hotel-Recommendation-System.git
 #Post Documents
 cd /opt/bitnami/solr/
 sudo -u solr ./bin/post -c reviewCore /home/aprabhath029/Hotel-Recommendation-System/Data/booking/booking.csv 
+
+#Remove Documents
+cd /opt/bitnami/solr/
+sudo -u solr ./bin/post -c reviewCore -d "<delete><query>*:*</query></delete>"
